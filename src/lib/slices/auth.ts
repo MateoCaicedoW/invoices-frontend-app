@@ -7,13 +7,15 @@ export interface AuthState {
     loading: boolean;
     error: string | null;
     loggedIn: boolean;
+    loggedInWithCompany: boolean;
 }
 
 const initialState: AuthState = {
     user: null,
     loading: false,
     error: null,
-    loggedIn: false
+    loggedIn: false,
+    loggedInWithCompany: false,
 }
 
 export const authSlice = createSlice({
@@ -24,10 +26,21 @@ export const authSlice = createSlice({
             state.loading = true;
             state.error = null;
         },
-        loginSuccess: (state, action: PayloadAction<{}>) => {
+        loginSuccess: (state, action: PayloadAction<{
+            id: string;
+            company_id: string;
+            first_name: string;
+            last_name: string;
+            email: string;
+            token: string;
+        }>) => {
             state.loading = false;
             state.user = action.payload;
             state.loggedIn = true;
+        },
+        loginCompanySuccess: (state, action: PayloadAction<{}>) => {
+            state.user = action.payload;
+            state.loggedInWithCompany = true;
         },
         loginFailure: (state, action: PayloadAction<string>) => {
             state.loading = false;
@@ -41,5 +54,5 @@ export const authSlice = createSlice({
 })
 
 
-export const {loginRequest, loginSuccess, loginFailure, logout} = authSlice.actions;
+export const {loginRequest, loginSuccess,loginCompanySuccess, loginFailure, logout} = authSlice.actions;
 export const authReducer = authSlice.reducer;

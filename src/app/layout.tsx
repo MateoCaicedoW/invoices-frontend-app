@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import UserProvider from "@/components/user_context/context";
 import ReduxProvider from "@/lib/provider";
+import DashboardLayout from "@/components/dashboardLayout";
 const poppins = Poppins({weight: "400", subsets: ["latin"]});
 
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ export default function RootLayout({
       <body className={poppins.className + " h-screen "}>
         <ReduxProvider >  
             <UserProvider>
-              {children}
+                {children}
             </UserProvider>
         </ReduxProvider>
       </body>

@@ -1,25 +1,16 @@
 'use client'
-
-
-import { UserContext } from "@/components/user_context/context"
+import DashoardLayout from "@/components/dashboardLayout"
 import withAuth from "@/components/withAuth"
-import { useContext } from "react"
+import withCompany from "@/components/withCompany"
 
-const Dashboard = () => {
-    const {auth} = useContext(UserContext)
-
-
+const Invoices = () => {
     return (
-        <div>
-            <h1>Invoices</h1>
-        </div>
+        <DashoardLayout>
+            <div className="text-black">
+                <h1>Invoices</h1>
+            </div>
+        </DashoardLayout>
     )
 }
 
-export default withAuth(Dashboard)
-
-
-
-
-
-
+export default withCompany(withAuth(Invoices))

@@ -1,8 +1,7 @@
 'use client'
 
 import { useSelector } from "react-redux";
-import Dashboard from "@/app/dashboard/page";
-
+import Dashboard from '@/app/dashboard/page';
 export default function withoutAuth(Component: React.FC) {
     return function AuthComponent() {
 
